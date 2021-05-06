@@ -1,0 +1,276 @@
+@import './variable/index.less';
+
+// 常用单位
+@heights: 16, 18, 20, 28, 30, 36, 38, 40, 48, 50, 60;
+@padmags: 1, 2, 3, 4, 5, 6, 8, 10, 12, 14, 15, 16, 18, 20, 24, 25, 28, 30, 40, 50;
+@fonts: 12, 13, 14, 15, 16, 18, 20, 24, 26, 30, 36, 38, 48;
+@fonts-weight: 100, 200, 300, 400, 500, 600, 700;
+@line-heights: 18, 20, 22, 24, 26, 28, 30, 36, 38, 40;
+@distance: 20, 30, 36, 38, 40, 48, 50, 60, 70;
+@distance_percent: 10, 15, 20, 25, 30, 60, 100;
+@rotates: 90, 180, -90;
+@lines: 1, 2, 3, 4;
+
+// border
+.br {
+    &t {
+        border-top: 1px solid @line;
+    }
+    &b {
+        border-bottom: 1px solid @line;
+    }
+}
+
+.bgc {
+    &white {
+        background-color: #fff;
+    }
+}
+
+// margin
+.m {
+  each(@padmags, {
+            &@{value} {
+                margin: @value * 1px;
+            }
+        }
+
+    );
+}
+
+.ml {
+  each(@padmags, {
+            &@{value} {
+                margin-left: @value * 1px;
+            }
+        }
+
+    );
+}
+
+.mr {
+  each(@padmags, {
+            &@{value} {
+                margin-right: @value * 1px;
+            }
+        }
+
+    );
+}
+
+.mt {
+  each(@padmags, {
+            &@{value} {
+                margin-top: @value * 1px;
+            }
+        }
+
+    );
+}
+
+.mb {
+  each(@padmags, {
+            &@{value} {
+                margin-bottom: @value * 1px;
+            }
+        }
+
+    );
+}
+
+// padding
+.p {
+  each(@padmags, {
+            &@{value} {
+                padding: @value * 1px;
+            }
+        }
+
+    );
+}
+
+.pl {
+  each(@padmags, {
+            &@{value} {
+                padding-left: @value * 1px;
+            }
+        }
+
+    );
+}
+
+.pr {
+  each(@padmags, {
+            &@{value} {
+                padding-right: @value * 1px;
+            }
+        }
+
+    );
+}
+
+.pt {
+  each(@padmags, {
+            &@{value} {
+                padding-top: @value * 1px;
+            }
+        }
+
+    );
+}
+
+.pb {
+  each(@padmags, {
+            &@{value} {
+                padding-bottom: @value * 1px;
+            }
+        }
+
+    );
+}
+
+.ft {
+  each(@fonts, {
+            &@{value} {
+                font-size: @value * 1px;
+            }
+        }
+
+    );
+}
+
+.ft_w {
+  each(@fonts-weight, {
+            &@{value} {
+                font-weight: @value;
+            }
+
+            &bold {
+                font-weight: bold;
+            }
+        }
+
+
+    );
+}
+
+// width
+.w {
+  each(@distance, {
+            &@{value} {
+                width: @value * 1px;
+            }
+        }
+
+    ) each(@distance_percent, {
+            &_@{value} {
+                width: @value * 1%;
+            }
+        }
+
+    );
+}
+
+// height
+.h {
+  each(@distance, {
+            &@{value} {
+                height: @value * 1px;
+            }
+        }
+
+    ) each(@distance_percent, {
+            &_@{value} {
+                height: @value * 1%;
+            }
+        }
+
+    );
+}
+
+.lh {
+  each(@line-heights, {
+            &@{value} {
+                line-height: @value*1px;
+            }
+        }
+
+    );
+}
+
+// flex布局
+.flex {
+  display: flex;
+
+  &1 {
+    flex: 1;
+  }
+
+  &-column {
+    flex-direction: column !important;
+  }
+
+  &-align {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  &-align-left {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  &-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &-start-between {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  &-around {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  &-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  &-left {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.multipliedLine {
+  each(@lines, {
+        &@{value} {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display:-webkit-box;
+            -webkit-box-orient:vertical;
+            -webkit-line-clamp: @value;
+        }
+    });
+}
