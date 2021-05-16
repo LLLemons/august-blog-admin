@@ -2,7 +2,7 @@
  * @Author: Lemon
  * @Date: 2021-04-30 17:25:39
  * @LastEditors: Lemon
- * @LastEditTime: 2021-05-06 17:18:37
+ * @LastEditTime: 2021-05-13 17:42:29
  * @FilePath: /august-blog-admin/src/components/upload/index.tsx
  */
 import { getToken } from '@/utils/token';
@@ -12,9 +12,10 @@ import { UploadFile } from 'antd/lib/upload/interface';
 import React, { useEffect, useState } from 'react';
 import style from './style.less';
 
-export interface BaseUploadProps extends Omit<UploadProps, 'fileList' | 'headers' | 'onChange'> {
+export interface BaseUploadProps
+  extends Omit<UploadProps, 'fileList' | 'headers' | 'onChange'> {
   value?: string;
-  onChange?: (v: string) => void
+  onChange?: (v: string) => void;
 }
 const getName = (value?: string): string => {
   const arr = value && value.split('/');
@@ -24,18 +25,20 @@ const getName = (value?: string): string => {
 const BaseUpload: React.FC<BaseUploadProps> = (props) => {
   const [fileList, setFileList] = useState<any[]>();
   useEffect(() => {
-    console.log(props.value, 'props.value----')
+    console.log(props.value, 'props.value----');
     if (props.value) {
-      setFileList([{
-        uid: '1',
-        name: getName(props.value),
-        url: props.value,
-        status: 'done'
-      }])
+      setFileList([
+        {
+          uid: '1',
+          name: getName(props.value),
+          url: props.value,
+          status: 'done',
+        },
+      ]);
     } else {
-      setFileList([])
+      setFileList([]);
     }
-  }, [props.value])
+  }, [props.value]);
   return (
     <Upload
       action="http://localhost:8000/api/v1/upload"
@@ -43,10 +46,10 @@ const BaseUpload: React.FC<BaseUploadProps> = (props) => {
       fileList={fileList}
       headers={{ Authorization: `${getToken()}` }}
       onChange={({ fileList }) => {
-        console.log(fileList)
-        setFileList(fileList)
+        console.log(fileList);
+        setFileList(fileList);
         if (fileList?.[0]?.status === 'done') {
-          props.onChange?.(fileList[0].response ?? '')
+          props.onChange?.(fileList[0].response ?? '');
         }
       }}
     >

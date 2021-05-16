@@ -2,7 +2,7 @@
  * @Author: Lemon
  * @Date: 2021-04-30 16:44:52
  * @LastEditors: Lemon
- * @LastEditTime: 2021-05-06 18:15:36
+ * @LastEditTime: 2021-05-13 18:02:27
  * @FilePath: /august-blog-admin/src/layouts/components/Header/index.tsx
  */
 import { getUserInfo } from '@/api/user';
@@ -17,12 +17,13 @@ export interface HeaderProps {}
 
 const Header: React.FC<HeaderProps> = (props) => {
   const [userInfo, setUserInfo] = useState<UserNamespace.userInfoResponse>();
-  
+
   const handleOk = async () => {
-    const data = await getUserInfo()
-    setUserInfo(data.data)
+    const data = await getUserInfo();
+    setUserInfo(data.data);
   };
-  
+  const handleRegisterOk = async () => {};
+
   const menu = (
     <Menu>
       <Menu.Item>
@@ -37,7 +38,6 @@ const Header: React.FC<HeaderProps> = (props) => {
       </Menu.Item>
     </Menu>
   );
-
 
   useEffect(() => {
     getUserInfo().then((res) => {
@@ -54,7 +54,7 @@ const Header: React.FC<HeaderProps> = (props) => {
             <UserInfoModal type="login" onOK={handleOk}>
               <Button type="primary">登陆</Button>
             </UserInfoModal>
-            <UserInfoModal type="register" onOK={handleOk}>
+            <UserInfoModal type="register" onOK={handleRegisterOk}>
               <Button className="ml10">注册</Button>
             </UserInfoModal>
           </>
@@ -62,7 +62,7 @@ const Header: React.FC<HeaderProps> = (props) => {
           <Dropdown overlay={menu} placement="bottomLeft">
             <Avatar
               size={'large'}
-              style={{cursor: 'pointer'}}
+              style={{ cursor: 'pointer' }}
               src={<img src={userInfo.avatar} />}
             />
           </Dropdown>
