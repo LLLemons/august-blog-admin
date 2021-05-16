@@ -2,7 +2,7 @@
  * @Author: Lemon
  * @Date: 2021-05-13 18:57:28
  * @LastEditors: Lemon
- * @LastEditTime: 2021-05-16 16:28:04
+ * @LastEditTime: 2021-05-16 17:57:50
  * @FilePath: /august-blog-admin/src/pages/Editor/index.tsx
  */
 import { queryArticle } from '@/api/article';
@@ -65,7 +65,7 @@ const EditorPage: React.FC<EditorPageProps> = (props) => {
   }, []);
 
   useLayoutEffect(() => {
-    ws.current = io('ws://127.0.0.1:7001/content', {
+    ws.current = io('ws://127.0.0.1:7002/content', {
       query: {
         rId: props.location.query.id,
         aId: props.location.query.aId || '',
